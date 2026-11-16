@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Y'smile Petal 花藝設計｜花束、啵啵球、玻璃花盅、花籃與客製化花禮。">
+  <title>Y'smile Petal｜Flowers make you smile.</title>
+  <style>
+    :root {
+      --cream: #f8f4ef;
+      --paper: #fffdfb;
+      --pink: #ead4d2;
+      --pink-dark: #c99f9b;
+      --sage: #a8b5a0;
+      --brown: #745b57;
+      --ink: #514541;
+      --muted: #8b7b75;
+      --line: #e9dfd8;
+      --shadow: 0 12px 34px rgba(91, 67, 58, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body {
+      margin: 0; color: var(--ink); background: var(--paper);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img { display: block; width: 100%; object-fit: cover; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .announcement {
+      background: var(--brown); color: #fffaf7; text-align: center;
+      padding: 7px 16px; font-size: 12px; letter-spacing: .12em;
+    }
+    header {
+      position: sticky; top: 0; z-index: 20; background: rgba(255,253,251,.94);
+      backdrop-filter: blur(12px); border-bottom: 1px solid rgba(233,223,216,.8);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-family: Georgia, serif; font-size: 29px; letter-spacing: .04em; color: var(--brown); white-space: nowrap; }
+    .logo span { color: var(--pink-dark); }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: 13px; color: #75645e; }
+    .nav-links a:hover { color: var(--pink-dark); }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; border-radius: 999px; padding: 11px 22px; cursor: pointer;
+      background: var(--brown); color: white; transition: .2s ease;
+    }
+    .nav-cta { font-size: 12px; padding: 9px 17px; }
+    .btn:hover, .nav-cta:hover { transform: translateY(-2px); background: #5f4945; }
+    .btn-light { background: #fffaf7; color: var(--brown); border: 1px solid var(--line); }
+    .btn-light:hover { background: var(--pink); color: var(--brown); }
+    .menu-toggle { display: none; background: none; border: 0; color: var(--brown); font-size: 25px; cursor: pointer; }
+    .hero {
+      min-height: 590px; display: grid; align-items: center;
+      background:
+        linear-gradient(90deg, rgba(248,244,239,.96) 0%, rgba(248,244,239,.82) 43%, rgba(248,244,239,.08) 100%),
+        url("封面-2.png") center/cover;
+    }
+    .hero-copy { max-width: 510px; padding: 90px 0; }
+    .eyebrow { color: var(--pink-dark); letter-spacing: .2em; text-transform: uppercase; font-size: 11px; font-weight: 700; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-family: Georgia, "Noto Serif TC", serif; font-weight: 400; color: var(--brown); font-size: clamp(46px, 7vw, 76px); line-height: 1.12; margin: 16px 0; }
+    h1 small { display: block; font-family: inherit; font-size: .35em; letter-spacing: .16em; margin-top: 15px; }
+    .hero-copy p { color: #776963; max-width: 410px; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    section { padding: 88px 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 42px; }
+    .section-head h2 { color: var(--brown); font-family: Georgia, "Noto Serif TC", serif; font-size: clamp(29px, 4vw, 40px); font-weight: 400; margin: 8px 0 10px; }
+    .section-head p { color: var(--muted); font-size: 14px; }
+    .intro { background: var(--cream); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; }
+    .intro-photo { height: 430px; border-radius: 180px 180px 12px 12px; box-shadow: var(--shadow); }
+    .intro-copy h2 { color: var(--brown); font: 400 38px/1.3 Georgia, "Noto Serif TC", serif; }
+    .intro-copy p { color: var(--muted); }
+    .signature { font-family: Georgia, serif; font-style: italic; font-size: 24px; color: var(--pink-dark); margin-top: 25px; }
+    .products { background: var(--paper); }
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .product-card { background: white; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: .25s; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .product-card img { height: 235px; }
+    .product-info { padding: 18px; }
+    .product-info .en { color: var(--pink-dark); font: 12px Georgia, serif; letter-spacing: .1em; }
+    .product-info h3 { margin: 5px 0; color: var(--brown); font-size: 17px; }
+    .product-info p { min-height: 48px; color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .price { color: var(--brown); font-weight: 700; font-size: 14px; }
+    .tiny-note { color: #a18f88; font-size: 11px; margin-top: 5px; }
+    .custom { background: #f5eeeb; }
+    .custom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .custom-item { background: rgba(255,255,255,.72); border-radius: 12px; padding: 23px 18px; text-align: center; }
+    .custom-item .num { font: 26px Georgia, serif; color: var(--pink-dark); }
+    .custom-item h3 { color: var(--brown); font-size: 15px; margin: 8px 0; }
+    .custom-item p { color: var(--muted); font-size: 12px; margin: 0; }
+    .gallery { background: var(--paper); }
+    .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin: -12px 0 30px; }
+    .filter-btn { border: 1px solid var(--line); background: white; color: var(--muted); border-radius: 99px; padding: 8px 17px; font-size: 12px; cursor: pointer; }
+    .filter-btn.active, .filter-btn:hover { background: var(--brown); border-color: var(--brown); color: white; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; background: var(--cream); }
+    .gallery-item img { height: 300px; transition: transform .5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 15px 13px; color: white; font-size: 13px; background: linear-gradient(transparent, rgba(55,38,33,.65)); }
+    .gallery-item.hidden { display: none; }
+    .order { background: var(--cream); }
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; }
+    .step { background: white; border: 1px solid var(--line); border-radius: 12px; padding: 22px 16px; }
+    .step-no { color: var(--pink-dark); font: 28px Georgia, serif; }
+    .step h3 { font-size: 14px; color: var(--brown); margin: 8px 0; }
+    .step p { font-size: 12px; color: var(--muted); margin: 0; }
+    .notice { max-width: 780px; margin: 38px auto 0; padding: 25px 28px; border-left: 3px solid var(--sage); background: rgba(255,255,255,.7); }
+    .notice h3 { color: var(--brown); font-size: 15px; }
+    .notice ul { padding-left: 20px; margin: 0; color: var(--muted); font-size: 12px; }
+    .contact { background: #fffdfb; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 45px; align-items: start; }
+    .contact-copy h2 { color: var(--brown); font: 400 38px/1.3 Georgia, "Noto Serif TC", serif; }
+    .contact-copy p { color: var(--muted); font-size: 14px; }
+    .contact-detail { margin-top: 25px; color: var(--muted); font-size: 13px; }
+    form { background: var(--cream); border: 1px solid var(--line); padding: 28px; border-radius: 14px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: var(--brown); font-size: 12px; font-weight: 700; }
+    input, select, textarea { width: 100%; border: 1px solid #e4d8d0; background: white; border-radius: 7px; padding: 11px 12px; color: var(--ink); outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--pink-dark); box-shadow: 0 0 0 3px rgba(201,159,155,.13); }
+    textarea { resize: vertical; min-height: 105px; }
+    .form-help { color: var(--muted); font-size: 11px; margin: 10px 0 0; }
+    .form-message { display: none; margin-top: 14px; padding: 12px; border-radius: 8px; background: #e9f0e6; color: #53664e; font-size: 12px; }
+    footer { background: #f1e8e3; padding: 42px 0 22px; text-align: center; color: var(--muted); }
+    .footer-logo { font: 32px Georgia, serif; color: var(--brown); }
+    .footer-tagline { font: italic 14px Georgia, serif; color: var(--pink-dark); margin: 4px 0 18px; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; font-size: 12px; margin: 18px 0; }
+    .copyright { border-top: 1px solid #dfd2ca; padding-top: 17px; margin-top: 25px; font-size: 10px; }
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .custom-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .nav-links { gap: 13px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 540px); }
+      .nav { min-height: 64px; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--paper); padding: 18px 25px 23px; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      .nav-links.open { display: flex; }
+      .hero { min-height: 560px; background-position: 58% center; }
+      .hero-copy { padding: 75px 0; }
+      .hero-copy p { max-width: 300px; }
+      section { padding: 66px 0; }
+      .intro-grid, .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+      .intro-photo { height: 330px; }
+      .product-grid { gap: 12px; }
+      .product-card img { height: 175px; }
+      .product-info { padding: 13px; }
+      .product-info p { min-height: 65px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .gallery-item img { height: 210px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .step { padding: 17px 13px; }
+      .form-grid { grid-template-columns: 1fr; gap: 0; }
+      form { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">採預約訂製｜確認需求與報價、支付訂金後安排製作</div>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">y<span>'</span>smile</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="開啟選單">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">HOME</a><a href="#flowers">FLOWERS</a><a href="#custom">CUSTOM</a>
+        <a href="#gallery">GALLERY</a><a href="#order">ORDER INFO</a><a href="#contact">CONTACT</a>
+      </nav>
+      <a class="nav-cta" href="#contact">詢問訂購 ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-copy">
+          <div class="eyebrow">Floral design · Made with love</div>
+          <h1>Y'smile<small>Flowers make you smile.</small></h1>
+          <p>用一束花，收藏生活中的每一份美好。為生日、紀念日與每個值得慶祝的時刻，打造專屬花禮。</p>
+          <p>"Ｙ‘smile Petal" 的花束都是情感的載體，是愛的使者。</p>
+          <div class="hero-actions">
+            <a class="btn" href="#flowers">瀏覽花藝作品</a>
+            <a class="btn btn-light" href="#contact">開始客製訂購</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="container intro-grid">
+        <img class="intro-photo" src="情境.png" alt="花藝作品展示">
+        <div class="intro-copy">
+          <div class="eyebrow">A little flower, a little happiness</div>
+          <h2>讓每一份心意，<br>都有專屬的模樣。</h2>
+          <p>y'smile 是一個以花藝傳遞心意的小小品牌。我們相信，花不只是禮物，更是一種表達情感的方式。</p>
+          <p>從日常的小驚喜到重要的紀念日，希望透過每一份用心製作的花禮，為你和重要的人帶來微笑。</p>
+          <div class="signature">With love, y'smile Petal</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="flowers">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Flower collection</div>
+          <h2>Find your flowers</h2>
+          <p>挑選喜歡的花藝款式，也歡迎提出你的專屬想法。</p>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="波波球.jpg" alt="啵啵球花藝">
+            <div class="product-info"><div class="en">BUBBLE FLOWER</div><h3>啵啵球花藝</h3><p>透明球體搭配花材與裝飾，為驚喜時刻增添可愛氛圍。</p><div class="price">NT$ 2200起</div><div class="tiny-note">依尺寸、花材與設計內容報價</div></div>
+          </article>
+          <article class="product-card">
+            <img src="花盅.jpg" alt="玻璃花盅">
+            <div class="product-info"><div class="en">GLASS DOME</div><h3>玻璃花盅</h3><p>將花朵收藏於玻璃盅中，適合紀念日與居家擺設。</p><div class="price">NT$ 1000起</div><div class="tiny-note">依尺寸、花材與設計內容報價</div></div>
+          </article>
+          <article class="product-card">
+            <img src="花束.jpg" alt="客製化花束">
+            <div class="product-info"><div class="en">FLOWER BOUQUET</div><h3>客製化花束</h3><p>依照預算、色系及送禮場合，設計專屬花束。</p><div class="price">NT$ 1000起</div><div class="tiny-note">依尺寸、花材與設計內容報價</div></div>
+          </article>
+          <article class="product-card">
+            <img src="花盆.jpg" alt="花籃設計">
+            <div class="product-info"><div class="en">FLOWER BASKET</div><h3>花籃設計</h3><p>適合開幕、祝賀、節慶與各式送禮場合。</p><div class="price">NT$ 1000起</div><div class="tiny-note">依尺寸、花材與設計內容報價</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="custom" id="custom">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Custom made</div><h2>Make it special, make it yours.</h2>
+          <p>告訴我們你的想法，讓花禮成為專屬於你的紀念。</p>
+        </div>
+        <div class="custom-grid">
+          <div class="custom-item"><div class="num">01</div><h3>指定色系</h3><p>粉色、白色、藍色、紫色等喜愛色系。</p></div>
+          <div class="custom-item"><div class="num">02</div><h3>指定預算</h3><p>依照預算討論合適的花材與設計。</p></div>
+          <div class="custom-item"><div class="num">03</div><h3>指定場合</h3><p>生日、紀念日、告白、開幕及節慶。</p></div>
+          <div class="custom-item"><div class="num">04</div><h3>特殊需求</h3><p>卡片文字、包裝風格與特別造型。</p></div>
+        </div>
+        <div style="text-align:center;margin-top:30px"><a class="btn" href="#contact">填寫客製需求</a></div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">Our works</div><h2>Made with love</h2><p>每一件作品，都是一份獨一無二的心意。</p></div>
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-filter="all">全部作品</button>
+          <button class="filter-btn" data-filter="bubble">啵啵球</button>
+          <button class="filter-btn" data-filter="dome">玻璃花盅</button>
+          <button class="filter-btn" data-filter="bouquet">花束</button>
+          <button class="filter-btn" data-filter="basket">花盆</button>
+          <button class="filter-btn" data-filter="tree">聖誕樹</button>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-category="bouquet"><img src="花束01.png" alt="花束作品示意"><div class="gallery-label">a001 · 花束作品示意</div></div>
+          <div class="gallery-item" data-category="bouquet"><img src="花束.jpg" alt="花束作品示意"><div class="gallery-label">a002 · 花束作品示意</div></div>
+          <div class="gallery-item" data-category="dome"><img src="花盅.jpg" alt="玻璃花盅作品示意"><div class="gallery-label">b001 · 玻璃花盅風格示意</div></div>
+          <div class="gallery-item" data-category="bubble"><img src="波波.png" alt="波波球示意圖"><div class="gallery-label">c001 · 啵啵球風格示意</div></div>
+          <div class="gallery-item" data-category="bubble"><img src="波波球.jpg" alt="波波球示意圖"><div class="gallery-label">c002 · 啵啵球風格示意</div></div>
+          <div class="gallery-item" data-category="basket"><img src="花盆.jpg" alt="花籃作品示意"><div class="gallery-label">d001 · 花盆作品示意</div></div>
+          <div class="gallery-item" data-category="tree"><img src="聖誕樹.png" alt="聖誕樹示意圖"><div class="gallery-label">e001 · 聖誕樹風格示意</div></div>
+          <div class="gallery-item" data-category="tree"><img src="聖誕樹02.png" alt="聖誕樹示意圖"><div class="gallery-label">e001 · 聖誕樹風格示意</div></div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="order" id="order">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">How to order</div><h2>訂購流程</h2><p>確認需求、報價與訂金後，再開始為你製作專屬花禮。</p></div>
+        <div class="steps">
+          <div class="step"><div class="step-no">01</div><h3>提出需求</h3><p>填寫表單，提供商品類型、預算、色系與日期。</p></div>
+          <div class="step"><div class="step-no">02</div><h3>確認報價</h3><p>雙方確認款式、花材、價格、交期及交付方式。</p></div>
+          <div class="step"><div class="step-no">03</div><h3>支付訂金</h3><p>依約定支付訂金，確認款項後安排製作。</p></div>
+          <div class="step"><div class="step-no">04</div><h3>花藝製作</h3><p>依雙方確認的內容進行設計與製作。</p></div>
+          <div class="step"><div class="step-no">05</div><h3>完成交付</h3><p>通知完成，依約支付尾款並安排取貨或配送。</p></div>
+        </div>
+        <div class="notice">
+          <h3>訂購注意事項</h3>
+          <ul>
+            <li>花藝商品採預約訂製，請提前預留製作時間，實際交期以確認訂單為準。</li>
+            <li>花材可能因季節及供應狀況調整；如需更換，會先與客人溝通確認。</li>
+            <li>客製化商品的價格依花材、尺寸、數量及設計複雜度另行報價。</li>
+            <li>訂金比例、取消、修改及退款方式，會在訂單成立前與客人確認，並依相關法規辦理。</li>
+            <li>目前為個人花藝接案，暫不提供統一發票。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <div class="eyebrow">Contact y'smile</div>
+          <h2>Let's make<br>something beautiful.</h2>
+          <p>告訴我們你的花藝需求，讓 y'smile 為你打造專屬花禮。送出需求後，請等待我們與你聯繫確認報價及交期。</p>
+          <div class="contact-detail">
+            <p>✿ 訂購方式｜網站需求表單</p>
+            <p>✿ 客製化｜依需求另行報價</p>
+            
+          </div>
+        </div>
+        <form id="orderForm">
+          <div class="form-grid">
+            <div class="field"><label for="name">姓名／稱呼 *</label><input id="name" name="name" required placeholder="請輸入姓名"></div>
+            <div class="field"><label for="contactWay">聯絡方式 *</label><input id="contactWay" name="contact" required placeholder="電話、Email 或 IG 帳號"></div>
+            <div class="field"><label for="product">訂購商品 *</label><select id="product" name="product" required><option value="">請選擇</option><option>啵啵球</option><option>玻璃花盅</option><option>花束</option><option>花盆</option><option>聖誕樹</option><option>其他客製化</option></select></div>
+            <div class="field"><label for="budget">預算範圍</label><select id="budget" name="budget"><option>請選擇預算</option><option>NT$500～1,000</option><option>NT$1,000～2,000</option><option>NT$2,000～3,000</option><option>NT$3,000 以上</option><option>依設計報價</option></select></div>
+            <div class="field"><label for="date">希望取貨日期</label><input id="date" name="date" type="date"></div>
+            <div class="field"><label for="color">喜歡的色系</label><select id="color" name="color"><option>不限／依設計搭配</option><option>粉色系</option><option>白色系</option><option>藍色系</option><option>紫色系</option><option>紅色系</option></select></div>
+            <div class="field full"><label for="details">其他需求／參考作品編號</label><textarea id="details" name="details" placeholder="例如：生日送禮、喜歡溫柔粉色、參考作品 YS001……"></textarea></div>
+            <div class="field full"><button class="btn" type="submit">送出訂購需求 ↗</button><p class="form-help">目前是網站展示版表單，尚未連接資料庫或表單服務。按下送出會先產生需求摘要，並不代表訂單成立。</p><div class="form-message" id="formMessage" role="status"></div></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">y'smile</div>
+      <div class="footer-tagline">Flowers make you smile.</div>
+      <div>用花傳遞心意，讓每一天都值得微笑。</div>
+      <div class="footer-links"><a href="#flowers">花藝商品</a><a href="#custom">客製化服務</a><a href="#gallery">作品集</a><a href="#order">訂購須知</a><a href="#contact">聯絡我們</a></div>
+      <div class="copyright">© 2026 y'smile Floral Design. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // 手機版導覽選單
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // 作品集分類篩選
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        galleryItems.forEach(item => {
+          item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
+        });
+      });
+    });
+
+    // 表單展示功能：目前只產生摘要，不會真的傳送給店家
+    const orderForm = document.getElementById('orderForm');
+    const formMessage = document.getElementById('formMessage');
+    orderForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(orderForm);
+      const summary = [
+        "y'smile Petal 花藝訂購需求",
+        `姓名：${data.get('name')}`,
+        `聯絡方式：${data.get('contact')}`,
+        `商品：${data.get('product')}`,
+        `預算：${data.get('budget')}`,
+        `希望取貨日期：${data.get('date') || '待確認'}`,
+        `色系：${data.get('color')}`,
+        `其他需求：${data.get('details') || '無'}`
+      ].join('\n');
+      formMessage.style.display = 'block';
+      formMessage.innerHTML = '需求摘要已產生。此展示版尚未連接正式收件服務；可先複製下方內容，再透過你的聯絡管道確認。<br><br><button type="button" class="btn btn-light" id="copySummary">複製需求摘要</button><pre style="white-space:pre-wrap;font:12px/1.7 inherit;margin:12px 0 0"></pre>';
+      formMessage.querySelector('pre').textContent = summary;
+      document.getElementById('copySummary').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(summary);
+          document.getElementById('copySummary').textContent = '已複製';
+        } catch {
+          document.getElementById('copySummary').textContent = '請手動選取摘要複製';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
